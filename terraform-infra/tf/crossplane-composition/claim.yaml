@@ -2,7 +2,7 @@ apiVersion: opm.paas.org/v1alpha1
 kind: OpmS3Bucket
 metadata:
   name: opms3bucket
-  namespace: opm-pi
+  namespace: crossplane-system-dev
 
 spec:
   parameters:
@@ -10,7 +10,7 @@ spec:
     acl: "private"
     VersioningConfiguration: "Enabled"
     Bucket: "opms3bucket"
-    Namespace: "opm-pi"
+    Namespace: "crossplane-system-dev"
     Forcedestroy: "false"
   compositionSelector:
     matchLabels:

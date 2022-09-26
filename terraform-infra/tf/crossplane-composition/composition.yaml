@@ -31,12 +31,10 @@ spec:
               - key: env
                 value: "Dev"  
           providerConfigRef:
-            name: tfproviderconfig-opmpi
+            name: tfcon
           writeConnectionSecretToRef:
             name: opmpi-test
             namespace: crossplane-system
-
-
 
 # For the parameter "namespace"
       patches:
