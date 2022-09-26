@@ -1,0 +1,38 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: s3buckets.crossplane.gitops.org
+  labels:
+    crossplane.io/xrd: compositecps3buckets.crossplane.gitops.org
+    provider: terraform-provider
+    team: ops
+
+spec:
+  writeConnectionSecretsToNamespace: crossplane-system
+  compositeTypeRef:
+    apiVersion: crossplane.gitops.org/v1alpha1
+    kind: CompositecpS3Bucket
+  resources:
+    - name: crossplane-tf-s3bucket-cp-pi
+      base:
+        apiVersion:  tf.crossplane.io/v1alpha1
+        kind: Workspace
+        spec:
+          forProvider:
+            module: git::https://github.com/arunkumarmurugesan/crossplane-poc.git//terraform-infra/tf/crossplane-composition/tf?ref=main
+            source: Remote
+            vars:
+              - key: locationconstraint
+              - key: acl
+              - key: versioningconfiguration
+              - key: bucket
+              - key: namespace
+              - key: forcedestroy
+                value: "false"
+              - key: env
+                value: "Dev"  
+          providerConfigRef:
+            name: tfcon
+          writeConnectionSecretToRef:
+            name: cppi-test
+            namespace: crossplane-system

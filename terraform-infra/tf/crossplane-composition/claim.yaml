@@ -1,15 +1,18 @@
-apiVersion: crossplane.gitops.org/v1alpha1
-kind: CpS3Bucket
+apiVersion: opm.paas.org/v1alpha1
+kind: OpmS3Bucket
 metadata:
-  name: cps3bucket
-  namespace: crossplane-system-dev
+  name: opms3bucket
+  namespace: opm-pi
+
 spec:
   parameters:
-    locationconstraint: "us-west-2"
-    versioningconfiguration: "Enabled"
-    bucket: "aws-crossplane-s3-composition-bucket"
-    namespace: "crossplane-system-dev"
+    LocationConstraint: "us-west-2"
+    acl: "private"
+    VersioningConfiguration: "Enabled"
+    Bucket: "opms3bucket"
+    Namespace: "opm-pi"
+    Forcedestroy: "false"
   compositionSelector:
     matchLabels:
       provider: terraform-provider
-      team: ops
+      team: opm
