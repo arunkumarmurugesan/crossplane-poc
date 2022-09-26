@@ -1,0 +1,46 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: CompositeResourceDefinition
+metadata:
+  name: compositecps3buckets.crossplane.gitops.org
+spec:
+  group: crossplane.gitops.org
+  names:
+    kind: CompositecpS3Bucket
+    plural: compositecps3buckets
+  claimNames:
+    kind: CpS3Bucket
+    plural: cps3buckets
+  versions:
+  - name: v1alpha1
+    served: true
+    referenceable: true
+    schema:
+      openAPIV3Schema:
+        type: object
+        properties:
+          spec:
+            type: object
+            properties:
+              parameters:
+                type: object
+                properties:
+                  LocationConstraint:
+                    type: string
+                  acl:
+                    type: string  
+                  VersioningConfiguration:
+                    type: string
+                  Bucket:
+                    type: string  
+                  Forcedestroy:
+                    type: string     
+                  Namespace:
+                    type: string  
+                required:
+                  - locationconstraint
+                  - versioningconfiguration
+                  - bucket
+                  - namespace
+                  - env
+            required:
+              - parameters

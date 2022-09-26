@@ -1,0 +1,15 @@
+apiVersion: crossplane.gitops.org/v1alpha1
+kind: CpS3Bucket
+metadata:
+  name: cps3bucket
+  namespace: crossplane-system-dev
+spec:
+  parameters:
+    locationconstraint: "us-west-2"
+    versioningconfiguration: "Enabled"
+    bucket: "aws-crossplane-s3-composition-bucket"
+    namespace: "crossplane-system-dev"
+  compositionSelector:
+    matchLabels:
+      provider: terraform-provider
+      team: ops
