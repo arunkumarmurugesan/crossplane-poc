@@ -6,7 +6,6 @@ metadata:
 spec:
   package: crossplane/provider-aws:alpha
 
-
 ---
 apiVersion: pkg.crossplane.io/v1
 kind: Provider
@@ -16,4 +15,4 @@ spec:
   package: crossplane/provider-terraform:master
 
 
-## “Kubectl apply -f aws-terraform-provider.yaml”
+## “kubectl apply -f aws-terraform-provider.yaml”
